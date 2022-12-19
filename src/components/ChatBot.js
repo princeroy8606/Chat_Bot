@@ -40,22 +40,7 @@ function ChatBot() {
   };
   return (
     <div className="bot-container">
-      ChatBot
-      <form>
-        <label htmlFor="query">
-          <input
-            type="text"
-            id="query"
-            onChange={(e) => setQuery(e.target.value)}
-          />
-          <button type="button" onClick={handleSubmit}>
-            Submit
-          </button>
-        </label>
-      </form>
-      {answer.map((item) => (
-        <h1>{item.extract}</h1>
-      ))}
+     
     </div>
   );
 }
