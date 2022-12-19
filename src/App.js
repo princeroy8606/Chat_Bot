@@ -22,10 +22,12 @@ const App = () => {
         <div className="bot-link" onClick={()=>{setOpen(!open)}}>
         </div>
       </div>
-      <div className={`bot-cover ${open === true ? 'active' : 'inactive'}`}>
+      {
+        open ? <div className={`bot-cover ${open === true ? 'active' : 'inactive'}`}>
         hallooo
       <ChatBot />
-      </div>
+      </div> :<></>
+      }
       
     </div>
   );
