@@ -1,0 +1,26 @@
+.App-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgb(251, 161, 181) 0%, rgba(173,118,212,1) 64%, rgba(120,93,194,1) 100%);
+
+  padding: 1rem;
+
+  .image-container{
+    width: 50%;
+  }
+  .text-container{
+    width: 50%;
+    font-size: 2rem;
+    word-wrap: break-word;
+    letter-spacing: 2px;
+    font-weight: 400;
+    line-height: 6rem;
+    display: none;
+  }
+  ChatBot{
+    width: 50%;
+    background-color: red;
+
+  }
+}
