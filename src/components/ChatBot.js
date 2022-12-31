@@ -36,7 +36,7 @@ function ChatBot() {
     //   setStore((ans) => [...ans, answer]);
     // }
   };
-  console.log(datas);
+  // console.log(datas);
 
   const endPoint = "https://en.wikipedia.org/w/api.php?";
   const params = {
