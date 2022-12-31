@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import "./chatBot.scss";
 import sendIcon from "../assets/send-chat.png";
@@ -7,7 +7,7 @@ function ChatBot() {
   const [query, setQuery] = useState("");
   const [question, setQuestion] = useState([]);
   const [answer, setAnswer] = useState([]);
-  const [store, setStore] = useState([]);
+  // const [store, setStore] = useState([]);
   const [datas, setDatas] = useState([]);
 
   const handleSubmit = async (e) => {
@@ -38,9 +38,9 @@ function ChatBot() {
     });
     setDatas(data);
     console.log(datas);
-    if (answer !== []) {
-      setStore((ans) => [...ans, answer]);
-    }
+    // if (answer !== []) {
+    //   setStore((ans) => [...ans, answer]);
+    // }
   };
   console.log(datas);
 
