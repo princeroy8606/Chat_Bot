@@ -4,23 +4,22 @@ import "./chatBot.scss";
 import sendIcon from "../assets/send-chat.png";
 import Chat from "./Chat";
 function ChatBot() {
-  const [query, setQuery] = useState();
-  const [answer, setAnswer] = useState([]);
-  const [data, setData] = useState([]);
+  const [query, setQuery] = useState("");
   const [question, setQuestion] = useState([]);
+  const [answer, setAnswer] = useState([]);
+  const [store, setStore] = useState([]);
+  const [datas, setDatas] = useState([]);
 
-  useEffect(() => {
-    localStorage.setItem("dataKey", JSON.stringify(data));
-    console.log(data);
-  }, [data]);
-
-  const handleSubmit = async () => {
-    setQuestion(query);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (query) {
+      setQuestion((qry) => [...qry, query]);
+      setQuery("");
+    }
     if (query !== undefined) {
       params.gsrsearch = query;
       try {
         const { data } = await axios.get(endPoint, { params });
-        setAnswer(data.query.pages);
         gatherdata(data.query.pages);
         if (data.error) throw new Error(data.error.info);
       } catch (error) {
@@ -33,9 +32,17 @@ function ChatBot() {
 
   const gatherdata = (pages) => {
     setAnswer(Object.values(pages));
-    setData(Object.values(pages));
-    console.log(answer);
+    let data = [];
+    data = answer.map((item) => {
+      // quest: item.extract
+    });
+    setDatas(data);
+    console.log(datas);
+    if (answer !== []) {
+      setStore((ans) => [...ans, answer]);
+    }
   };
+  console.log(datas);
 
   const endPoint = "https://en.wikipedia.org/w/api.php?";
   const params = {
@@ -52,31 +59,35 @@ function ChatBot() {
   return (
     <div className="bot-container">
       <div className="message-container">
-        <div className="ans-box">
-        {answer.map((item) => (
+        <div className="qstin-box">
+          <h1>{console.log(datas)}</h1>
+
+          {question?.map((qst) => (
+            <div className="box">
+              <h1>{qst}</h1>
+            </div>
+          ))}
+        </div>
+
+        {answer?.map((item) => (
+          // <h1>{item.extract}</h1>
           <Chat data={item} />
         ))}
-        </div>
-        {/* {
-          data.map((item)=>(
-            <div>{item.extract}</div>
-          ))
-        } */}
-       <div className="qstin-box">
-       {
-
-       }
-       </div>
       </div>
       <div className="input-container">
-        <form>
+        <form onSubmit={handleSubmit}>
           <label>
-            <input type="text" onChange={(e) => setQuery(e.target.value)} />
+            <input
+              value={query}
+              name="question"
+              placeholder="Ask your douts"
+              onChange={(e) => setQuery(e.target.value)}
+            />
           </label>
         </form>
-        <div className="image">
-          <img src={sendIcon} alt="Send" onClick={handleSubmit} />
-        </div>
+        <button className="image" onClick={handleSubmit}>
+          <img src={sendIcon} alt="Send" />
+        </button>
       </div>
     </div>
   );
