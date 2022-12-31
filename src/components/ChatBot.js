@@ -8,7 +8,7 @@ function ChatBot() {
   const [question, setQuestion] = useState([]);
   const [answer, setAnswer] = useState([]);
   // const [store, setStore] = useState([]);
-  const [datas, setDatas] = useState([]);
+  // const [datas, setDatas] = useState([]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,12 +32,6 @@ function ChatBot() {
 
   const gatherdata = (pages) => {
     setAnswer(Object.values(pages));
-    let data = [];
-    data = answer.map((item) => {
-      // quest: item.extract
-    });
-    setDatas(data);
-    console.log(datas);
     // if (answer !== []) {
     //   setStore((ans) => [...ans, answer]);
     // }
@@ -60,7 +54,7 @@ function ChatBot() {
     <div className="bot-container">
       <div className="message-container">
         <div className="qstin-box">
-          <h1>{console.log(datas)}</h1>
+          {/* <h1>{console.log(datas)}</h1> */}
 
           {question?.map((qst) => (
             <div className="box">
