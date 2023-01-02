@@ -17,22 +17,19 @@
     height: 80%;
     background-color: antiquewhite;
     overflow: scroll;
-
-    .qstin-box {
-      display: flex;
-      justify-content: flex-end;
-      width: 90%;
-      height: fit-content;
-      margin: 1rem;
       .box {
+        width: 90%;
+        height: fit-content;
+        margin: 1rem;
         display: flex;
         flex-direction: column;
         margin: 1rem;
         padding: .5rem;
         width: fit-content;
+        border-radius: 86% 14% 85% 15% / 0% 100% 0% 100%  ;
         background-color: blue;
       }
-    }
+
     .ans-box {
       width: 50%;
       height: fit-content;
@@ -82,10 +79,17 @@
   width: 50%;
   height: fit-content;
   background-color: aqua;
-  padding: 0.25rem;
-  margin: 1rem;
+  padding:1rem;
+  margin: 1.5rem;
+  border-radius: 86% 14% 85% 15% / 0% 100% 0% 100% ;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 
 }
 .chat{
-  background-color: rosybrown;
+  border-radius: 86% 14% 85% 15% / 0% 100% 0% 100% ;
+  background-color: aquamarine;
+  
+  h6{
+    opacity: .75;
+  }
 }

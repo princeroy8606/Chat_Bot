@@ -1,3 +1,5 @@
+import "./chatBot.scss";
+
 const Query = ({ data }) => {
  return(
     <div className="box" key={data}>

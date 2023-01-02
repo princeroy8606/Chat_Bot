@@ -3,6 +3,7 @@ import axios from "axios";
 import "./chatBot.scss";
 import sendIcon from "../assets/send-chat.png";
 import Chat from "./Chat";
+import Query from "./query";
 
 const ChatBot = () => {
   const [input, setInput] = useState("");
@@ -57,6 +58,7 @@ const ChatBot = () => {
     handleSubmit();
   }, [query]);
 
+  //extracting text response
   useEffect(() => {
     const gatherdata = (store) => {
       setAnswer(Object.values(store));
@@ -65,6 +67,7 @@ const ChatBot = () => {
     gatherdata(store);
   }, [store]);
 
+  //Storing extracted text
   useEffect(() => {
     setFinal((data) => [...data, datas]);
   }, [answer]);
@@ -72,18 +75,12 @@ const ChatBot = () => {
   return (
     <div className="bot-container">
       <div className="message-container">
-        <div className="qstin-box">
+        {/* <div className="qstin-box"> */}
           {question?.map((qst) => (
-            <div className="box">
-              <h1>{qst}</h1>
-            </div>
+            <Query data={qst} />
           ))}
-        </div>
-        {
-         final.length >4 && final.slice(4).map((item) => <Chat data={item} />)
-         }
-
-
+        {/* </div> */}
+        {final.length > 4 && final.slice(4).map((item) => <Chat data={item} />)}
         {answer.map((item) => (
           <div className="chat-bot" key={item.index}>
             <h6>{item.extract}</h6>
