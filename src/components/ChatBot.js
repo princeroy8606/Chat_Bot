@@ -5,12 +5,13 @@ import sendIcon from "../assets/send-chat.png";
 import Chat from "./Chat";
 
 const ChatBot = () => {
-  const [input, setInput] = useState(" ");
+  const [input, setInput] = useState("");
   const [query, setQuery] = useState("");
+  const [datas, setDatas] = useState("");
   const [question, setQuestion] = useState([]);
   const [answer, setAnswer] = useState([]);
   const [store, setStore] = useState([]);
-  const [datas, setDatas] = useState([]);
+  const [final, setFinal] = useState([]);
 
   //API...
   const endPoint = "https://en.wikipedia.org/w/api.php?";
@@ -45,7 +46,6 @@ const ChatBot = () => {
           const { data } = await axios.get(endPoint, { params });
           // gatherdata(data.query.pages);
           setStore(data.query.pages);
-          console.log(data.query.pages);
           if (data.error) throw new Error(data.error.info);
         } catch (error) {
           console.log(error);
@@ -60,9 +60,14 @@ const ChatBot = () => {
   useEffect(() => {
     const gatherdata = (store) => {
       setAnswer(Object.values(store));
+      setDatas(answer.map((item) => item.extract));
     };
     gatherdata(store);
   }, [store]);
+
+  useEffect(() => {
+    setFinal((data) => [...data, datas]);
+  }, [answer]);
 
   return (
     <div className="bot-container">
@@ -74,10 +79,15 @@ const ChatBot = () => {
             </div>
           ))}
         </div>
+        {
+         final.length >4 && final.slice(4).map((item) => <Chat data={item} />)
+         }
 
-        {answer?.map((item) => (
-          // <h1>{item.extract}</h1>
-          <Chat data={item} />
+
+        {answer.map((item) => (
+          <div className="chat-bot" key={item.index}>
+            <h6>{item.extract}</h6>
+          </div>
         ))}
       </div>
       <div className="input-container">
@@ -86,7 +96,7 @@ const ChatBot = () => {
             <input
               value={input}
               name="question"
-              placeholder="Ask your douts"
+              placeholder=" Ask your douts"
               onChange={(e) => setInput(e.target.value)}
             />
           </label>
