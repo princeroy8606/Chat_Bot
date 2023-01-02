@@ -1,43 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./chatBot.scss";
 import sendIcon from "../assets/send-chat.png";
 import Chat from "./Chat";
-function ChatBot() {
+
+const ChatBot = () => {
+  const [input, setInput] = useState(" ");
   const [query, setQuery] = useState("");
   const [question, setQuestion] = useState([]);
   const [answer, setAnswer] = useState([]);
-  // const [store, setStore] = useState([]);
-  // const [datas, setDatas] = useState([]);
+  const [store, setStore] = useState([]);
+  const [datas, setDatas] = useState([]);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (query) {
-      setQuestion((qry) => [...qry, query]);
-      setQuery("");
-    }
-    if (query !== undefined) {
-      params.gsrsearch = query;
-      try {
-        const { data } = await axios.get(endPoint, { params });
-        gatherdata(data.query.pages);
-        if (data.error) throw new Error(data.error.info);
-      } catch (error) {
-        console.log(error);
-      }
-    } else {
-      console.log("not submitted");
-    }
-  };
-
-  const gatherdata = (pages) => {
-    setAnswer(Object.values(pages));
-    // if (answer !== []) {
-    //   setStore((ans) => [...ans, answer]);
-    // }
-  };
-  // console.log(datas);
-
+  //API...
   const endPoint = "https://en.wikipedia.org/w/api.php?";
   const params = {
     origin: "*",
@@ -50,12 +25,49 @@ function ChatBot() {
     generator: "search",
     gsrlimit: 1,
   };
+
+  //Submitting query
+  const handleClick = (e) => {
+    e.preventDefault();
+    setQuery(input);
+  };
+
+  //fetching Data...
+  useEffect(() => {
+    const handleSubmit = async () => {
+      if (query) {
+        setQuestion((qry) => [...qry, query]);
+        setInput("");
+      }
+      if (query !== undefined) {
+        params.gsrsearch = query;
+        try {
+          const { data } = await axios.get(endPoint, { params });
+          // gatherdata(data.query.pages);
+          setStore(data.query.pages);
+          console.log(data.query.pages);
+          if (data.error) throw new Error(data.error.info);
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        console.log("not submitted");
+      }
+    };
+    handleSubmit();
+  }, [query]);
+
+  useEffect(() => {
+    const gatherdata = (store) => {
+      setAnswer(Object.values(store));
+    };
+    gatherdata(store);
+  }, [store]);
+
   return (
     <div className="bot-container">
       <div className="message-container">
         <div className="qstin-box">
-          {/* <h1>{console.log(datas)}</h1> */}
-
           {question?.map((qst) => (
             <div className="box">
               <h1>{qst}</h1>
@@ -69,22 +81,22 @@ function ChatBot() {
         ))}
       </div>
       <div className="input-container">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleClick}>
           <label>
             <input
-              value={query}
+              value={input}
               name="question"
               placeholder="Ask your douts"
-              onChange={(e) => setQuery(e.target.value)}
+              onChange={(e) => setInput(e.target.value)}
             />
           </label>
         </form>
-        <button className="image" onClick={handleSubmit}>
+        <button className="image" onClick={handleClick}>
           <img src={sendIcon} alt="Send" />
         </button>
       </div>
     </div>
   );
-}
+};
 
 export default ChatBot;

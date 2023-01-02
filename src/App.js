@@ -40,8 +40,8 @@ const App = () => {
         ></div>
       </div>
       {open ? (
-        <div className={`bot-cover ${open === true ? "active" : "inactive"}`}>
-          <ChatBot />
+        <div className={`bot-cover ${open === true ? "active" : "inactive"} `}>
+          <ChatBot/>
         </div>
       ) : (
         <></>
