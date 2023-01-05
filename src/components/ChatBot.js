@@ -2,13 +2,10 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./chatBot.scss";
 import sendIcon from "../assets/send-chat.png";
-import Chat from "./Chat";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
-import TextField from "@mui/material/TextField";
 
 const ChatBot = () => {
   const [input, setInput] = useState("");
@@ -129,20 +126,47 @@ const ChatBot = () => {
           borderRadius: 4,
         }}
       >
-        <List>
+        <List
+          sx={{
+            height: 500,
+            display: 'flex',
+            flexDirection: 'row',
+            overflowY: 'scroll',
+          }}
+        >
           <ListItem
             sx={{
               display: "flex",
-              flexDirection: "column",
-            }}
-          >
-            {final.length > 4 &&
-              final.slice(4).map((item) => <ListItemText primary={item} />)}
-            {answer.map((item) => (
-              <ListItemText primary={item.extract} sx={{alignItems:'flex-end'}} />
-              ))}
+              flexDirection:'column',
+              justifyContent:'flex-end',
+
+            }}>
+            {
+              final.length > 4 &&
+              final.slice(4).map((item) => 
+              <div className="text-box">
+                <h5>{item}</h5>
+              </div>)
+            }
+            {
+              answer.map((item) => (
+                <div className="text-box">
+                <h5>{item.extract}</h5>
+                </div>
+                ))
+            }
+          </ListItem>
+
+          <ListItem
+            sx={{
+              display: "flex",
+              flexDirection:'column',
+              justifyContent:'flex-end',
+            }}>
             {question?.map((qst) => (
-              <Chat query={qst} />
+              <div className="qst-box">
+              <h5>{qst}</h5>
+              </div>
             ))}
           </ListItem>
         </List>
@@ -153,19 +177,19 @@ const ChatBot = () => {
           justifyContent: "space-between",
           alignItems: "center",
           height: 100,
-          backgroundColor: "primary.dark",
           borderRadius: 4,
         }}
       >
-        <TextField
-          id="outlined-basic"
-          placeholder="Ask your douts"
-          variant="outlined"
-          onChange={(e) => setInput(e.target.value)}
-          sx={{
-            width: "50ch",
-          }}
-        />
+        <form onSubmit={handleClick}>
+          <label>
+            <input
+              value={input}
+              name="question"
+              placeholder=" Ask your douts"
+              onChange={(e) => setInput(e.target.value)}
+            />
+          </label>
+        </form>
         <button className="image" onClick={handleClick}>
           <img src={sendIcon} alt="Send" />
         </button>

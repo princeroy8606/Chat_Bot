@@ -1,87 +1,3 @@
-.bot-container {
-  width: 50vw;
-  height: 90vh;
-  border-radius: 1rem;
-  padding: 1rem;
-  background-color: transparent;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-  overflow-y: hidden;
-
-  .message-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    width: 100%;
-    height: 80%;
-    background-color: antiquewhite;
-    overflow: scroll;
-      .box {
-        width: 90%;
-        height: fit-content;
-        margin: 1rem;
-        display: flex;
-        flex-direction: column;
-        margin: 1rem;
-        padding: .5rem;
-        width: fit-content;
-        border-radius: 86% 14% 85% 15% / 0% 100% 0% 100%  ;
-        background-color: blue;
-      }
-
-    .ans-box {
-      width: 50%;
-      height: fit-content;
-    }
-  }
-  .input-container {
-    width: 100%;
-    height: auto;
-    border-radius: 1rem;
-    padding: 0.5rem;
-    display: flex;
-    justify-content: space-between;
-
-    form {
-      height: 4rem;
-      width: 85%;
-      input {
-        width: 100%;
-        height: 100%;
-        font-size: 1.5rem;
-        border: none;
-        border-radius: 1rem;
-      }
-      input:focus {
-        overflow: scroll;
-        outline: none;
-      }
-    }
-  
-  }
-}
-
-.chat-bot {
-  width: 50%;
-  height: fit-content;
-  background-color: aqua;
-  padding:1rem;
-  margin: 1.5rem;
-  border-radius: 86% 14% 85% 15% / 0% 100% 0% 100% ;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-
-}
-.chat{
-  border-radius: 86% 14% 85% 15% / 0% 100% 0% 100% ;
-  background-color: aquamarine;
-  
-  h6{
-    opacity: .75;
-  }
-}
-
-
 .image {
   width: 4rem;
   height: 4rem;
@@ -94,5 +10,44 @@
   img {
     width: 100%;
     height: 100%;
+  }
+}
+
+form {
+  height: 4rem;
+  width: 85%;
+  input {
+    width: 100%;
+    height: 100%;
+    font-size: 1.5rem;
+    border: none;
+    border-radius: 1rem;
+  }
+  input:focus {
+    overflow: scroll;
+    outline: none;
+  }
+}
+
+.text-box {
+  width: 15rem;
+  height: 8rem;
+  margin: 0.5rem 0 0 0;
+  background-color: rosybrown;
+  padding: 0.5rem;
+}
+
+.qst-box {
+  width: 15rem;
+  height: 8rem;
+  margin: 0.5rem 0 0 0;
+  border-radius: 1rem;
+  background-color: rgb(233, 88, 88);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  h5 {
+    text-align: center;
   }
 }
