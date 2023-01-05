@@ -2,20 +2,10 @@ import "./chatBot.scss";
 import ListItemText from "@mui/material/ListItemText";
 
 
-const Chat = ({ data, query }) => {
-  console.log(ans)
+const Chat = ({query}) => {
   return (
     <>
-    <ListItemText primary={query}/>
-    <ListItemText primary={data}/>
-    {
-      
-    }
-    {
-      ans.length ===0 &&
-      <ListItemText primary={ans.extract
-      }/>
-    }
+      <ListItemText primary={query} />
     </>
   );
 };

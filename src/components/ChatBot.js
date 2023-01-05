@@ -136,15 +136,14 @@ const ChatBot = () => {
               flexDirection: "column",
             }}
           >
-
-            {/* {final.length > 4 &&
+            {final.length > 4 &&
               final.slice(4).map((item) => <ListItemText primary={item} />)}
             {answer.map((item) => (
               <ListItemText primary={item.extract} sx={{alignItems:'flex-end'}} />
-              ))} */}
-              {question?.map((qst) => (
-                <Chat query={qst} ans={answer} data={final} />
               ))}
+            {question?.map((qst) => (
+              <Chat query={qst} />
+            ))}
           </ListItem>
         </List>
       </Box>
