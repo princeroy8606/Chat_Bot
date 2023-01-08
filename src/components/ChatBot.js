@@ -12,7 +12,7 @@ const ChatBox = styled(Box)(() => ({
     height: 'auto', maxHeight: 500, width: '100%', borderRadius: '0.25rem', overflowY: 'scroll'
 }))
 
-const MessageContainer = styled(Stack)(({theme, data}) => ({
+const MessageContainer = styled(Stack)(({ theme, data }) => ({
     borderRadius: '0.25rem',
     width: '100%',
     height: 'fit-content',
@@ -21,7 +21,7 @@ const MessageContainer = styled(Stack)(({theme, data}) => ({
     justifyContent: `${Object.keys(data)[0] === 'ans' ? 'flex-start' : 'flex-end'}`,
 }))
 
-const Message = styled(Typography)(({theme, data}) => ({
+const Message = styled(Typography)(({ theme, data }) => ({
     padding: '0.5rem',
     width: 'fit-content',
     background: `${Object.keys(data)[0] === 'ans' ? '#ccc' : '#eee'}`,
@@ -31,9 +31,7 @@ const Message = styled(Typography)(({theme, data}) => ({
 const ChatBot = () => {
     const [input, setInput] = useState("");
     const [answer, setAnswer] = useState('');
-    const [chats, setChats] = useState([]);
-
-
+    const [chats, setChats] = useState([])
     //API...
     const endPoint = "https://en.wikipedia.org/w/api.php?";
     const params = {
@@ -51,21 +49,21 @@ const ChatBot = () => {
     //Submitting query
     const handleSendQuestion = async (e) => {
         e.preventDefault();
-        if(input !== '') {
-            setChats([...chats, {qp: input}])
+        if (input !== '') {
+            setChats([...chats, { qp: input }])
             params.gsrsearch = input
             const { data } = await axios.get(endPoint, { params });
             setAnswer(data?.query?.pages)
-        }else console.log('no query')
+        } else console.log('no query')
     };
 
     useEffect(() => {
-        if(answer !== '') setChats([...chats, {ans: Object.values(answer)[0]?.extract}])
+        if (answer !== '') setChats([...chats, { ans: Object.values(answer)[0]?.extract }])
         setInput('')
     }, [answer])
 
     return (
-        <Container sx={{display: "flex",flexDirection: "column",justifyContent: "space-between",width: 600,height: 660,backgroundColor: "primary.light",borderRadius: '0.25rem',padding: '1rem'}}>
+        <Container sx={{ display: "flex", flexDirection: "column", justifyContent: "space-between", width: 600, height: 660, backgroundColor: "primary.light", borderRadius: '0.25rem', padding: '1rem' }}>
             <ChatBox>
                 {(chats && chats?.length !== 0) && chats?.map(msg => (
                     <MessageContainer data={msg}>
@@ -73,21 +71,21 @@ const ChatBot = () => {
                     </MessageContainer>
                 ))}
             </ChatBox>
-            
+
             <Stack flexDirection='row' justifyContent='space-between' columnGap='1rem'>
                 <TextField
                     value={input}
                     fullWidth
                     placeholder=" Ask your douts"
                     onChange={(e) => setInput(e.target.value)}
-                    // InputProps={{
-                    //     endAdornment: (<IconButton>
-                    //         <img src={sendIcon} alt="Send" style={{height: '3rem', width: '3rem'}}/>
-                    //     </IconButton>)
-                    // }}
-                    />
+                // InputProps={{
+                //     endAdornment: (<IconButton>
+                //         <img src={sendIcon} alt="Send" style={{height: '3rem', width: '3rem'}}/>
+                //     </IconButton>)
+                // }}
+                />
                 <IconButton onClick={handleSendQuestion}>
-                    <img src={sendIcon} alt="Send" style={{height: '3rem', width: '3rem'}}/>
+                    <img src={sendIcon} alt="Send" style={{ height: '3rem', width: '3rem' }} />
                 </IconButton>
             </Stack>
         </Container>
