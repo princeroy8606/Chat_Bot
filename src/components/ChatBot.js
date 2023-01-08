@@ -4,7 +4,8 @@ import sendIcon from "../assets/send-chat.png";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import { IconButton, Stack, styled, TextField, Typography } from "@mui/material";
-import { borderRadius } from "@mui/system";
+import { borderRadius, padding } from "@mui/system";
+import chatbot from '../assets/chatbot.png'
 
 const ChatBox = styled(Box)(() => ({
     display: 'flex',
@@ -47,6 +48,15 @@ const ChatBot = () => {
         gsrlimit: 1,
     };
 
+    //
+
+    // const handleKeyPress = e => {
+    //     if (e.keyCode === 13) {
+    //         console.log(e)
+    //         handleSendQuestion()
+    //     }
+    // }
+
     //Submitting query
     const handleSendQuestion = async (e) => {
         e.preventDefault();
@@ -57,16 +67,15 @@ const ChatBot = () => {
             setAnswer(data?.query?.pages)
         } else console.log('no query')
     };
-
+    //
     useEffect(() => {
         if (answer !== '') setChats([...chats, { ans: Object.values(answer)[0]?.extract }])
         setInput('')
     }, [answer])
 
     return (
-        <Container sx={{ display: "flex", flexDirection: "column", justifyContent: "space-between", width: 600, height: 660, backgroundColor: "primary.light", borderRadius: '0.38rem', padding: '1rem' }}>
+        <Container sx={{ display: "flex", flexDirection: "column", justifyContent: "space-between", width: 600, height: 660, backgroundColor: "transparent", borderRadius: '0.38rem', padding: '1rem' }}>
             <ChatBox>
-
                 <div style={{
                     borderRadius: '0.25rem',
                     display: 'flex',
@@ -74,14 +83,18 @@ const ChatBot = () => {
                     height: 'fit-content',
                     margin: '0.5rem 0',
                     flexDirection: 'row',
-                    // justifyContent: 'flex-start'
                 }}>
                     <div style={{
                         display: 'flex',
                         flexDirection: 'column',
-                        justifyContent: 'flex-end'
+                        justifyContent: 'flex-end',
                     }}>
-                        <img src="" alt="bot-logo" />
+                        <img src={chatbot} alt="bot-logo" style={{
+                            width: '3rem',
+                            height: '3rem',
+                            padding: '.5rem',
+
+                        }} />
                     </div>
                     <p style={{
                         padding: '0.5rem',
@@ -108,6 +121,7 @@ const ChatBot = () => {
                     fullWidth
                     placeholder=" Ask your douts"
                     onChange={(e) => setInput(e.target.value)}
+                // onKeyPress={handleKeyPress}
                 />
                 <IconButton onClick={handleSendQuestion}>
                     <img src={sendIcon} alt="Send" style={{ height: '3rem', width: '3rem' }} />
