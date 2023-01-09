@@ -19,7 +19,7 @@ const ChatBox = styled(Box)(() => ({
         backgroundColor: 'transpernet'
     },
     '&::-webkit-scrollbar-thumb': {
-        backgroundColor: '#ea4dff',
+        backgroundColor: 'black',
         borderRadius: 5
 
     }
