@@ -76,7 +76,7 @@ const ChatBot = () => {
     }, [answer])
 
     return (
-        <Container sx={{ display: "flex", flexDirection: "column", justifyContent: "space-between", minWidth: 300, height: 600, backgroundColor: "transparent", borderRadius: '0.38rem', padding: '1rem' }}>
+        <Container sx={{ display: "flex", flexDirection: "column", justifyContent: "space-between", minWidth: 300, height: 600, backgroundColor: "#fe938c",borderRadius:'1rem' }}>
             <ChatBox>
                 <div style={{
                     borderRadius: '0.25rem',
