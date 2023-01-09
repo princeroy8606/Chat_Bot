@@ -106,6 +106,7 @@ const ChatBot = () => {
                         background: '#dfdc',
                         borderRadius: '0.5rem 0.5rem 0.5rem 0'
                     }}>
+                        Hi,<br />
                         Want to know more about Programing
                         <br />
                         Ask Me what you Want
