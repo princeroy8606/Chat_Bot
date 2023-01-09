@@ -11,7 +11,18 @@ const ChatBox = styled(Box)(() => ({
     display: 'flex',
     alignItems: 'flex-start',
     flexWrap: 'wrap',
-    height: 'auto', maxHeight: 500, width: '100%', borderRadius: '0.25rem', overflowY: 'scroll'
+    height: 'auto', maxHeight: 500, width: '100%', borderRadius: '0.25rem', overflowY: 'scroll',
+    '&::-webkit-scrollbar': {
+        width: 10
+    },
+    '&::-webkit-scrollbar-track': {
+        backgroundColor: 'transpernet'
+    },
+    '&::-webkit-scrollbar-thumb': {
+        backgroundColor: '#ea4dff',
+        borderRadius: 5
+
+    }
 }))
 
 const MessageContainer = styled(Stack)(({ theme, data }) => ({
@@ -50,15 +61,6 @@ const ChatBot = () => {
         gsrlimit: 1,
     };
 
-    //
-
-    // const handleKeyPress = e => {
-    //     if (e.keyCode === 13) {
-    //         console.log(e)
-    //         handleSendQuestion()
-    //     }
-    // }
-
     //Submitting query
     const handleSendQuestion = async (e) => {
         e.preventDefault();
@@ -76,7 +78,7 @@ const ChatBot = () => {
     }, [answer])
 
     return (
-        <Container sx={{ display: "flex", flexDirection: "column", justifyContent: "space-between", minWidth: 300, height: 600, backgroundColor: "#fe938c",borderRadius:'1rem' }}>
+        <Container sx={{ display: "flex", flexDirection: "column", justifyContent: "space-between", minWidth: 300, height: 660, backgroundColor: "#fe938c", borderRadius: '1rem' }}>
             <ChatBox>
                 <div style={{
                     borderRadius: '0.25rem',
@@ -132,13 +134,14 @@ const ChatBot = () => {
                 ))}
             </ChatBox>
 
-            <Stack flexDirection='row' justifyContent='space-between' columnGap='1rem'>
+            <Stack flexDirection='row' justifyContent='space-between' columnGap='1rem'
+                sx={{ background: '#d9aea1', padding: '.5rem 0rem 0rem .5rem', borderRadius: '1rem', marginBottom: '.5rem' }}>
                 <TextField
+                    sx={{ color: '#fff' }}
                     value={input}
                     fullWidth
                     placeholder=" Ask your douts"
                     onChange={(e) => setInput(e.target.value)}
-                // onKeyPress={handleKeyPress}
                 />
                 <IconButton onClick={handleSendQuestion}>
                     <img src={sendIcon} alt="Send" style={{ height: '3rem', width: '3rem' }} />
