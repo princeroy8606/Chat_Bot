@@ -25,7 +25,9 @@ const MessageContainer = styled(Stack)(({ theme, data }) => ({
 
 const Message = styled(Typography)(({ theme, data }) => ({
     padding: '0.8rem',
-    width: 'fit-content',
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'flex-end',
     background: `${Object.keys(data)[0] === 'ans' ? '#ccc' : '#eee'}`,
     borderRadius: `${Object.keys(data)[0] === 'ans' ? '0.5rem 0.5rem 0.5rem 0' : '0.5rem 0.5rem 0 0.5rem'}`,
 }))
@@ -74,12 +76,12 @@ const ChatBot = () => {
     }, [answer])
 
     return (
-        <Container sx={{ display: "flex", flexDirection: "column", justifyContent: "space-between", width: 600, height: 660, backgroundColor: "transparent", borderRadius: '0.38rem', padding: '1rem' }}>
+        <Container sx={{ display: "flex", flexDirection: "column", justifyContent: "space-between", minWidth: 300, height: 600, backgroundColor: "transparent", borderRadius: '0.38rem', padding: '1rem' }}>
             <ChatBox>
                 <div style={{
                     borderRadius: '0.25rem',
                     display: 'flex',
-                    width: '100%',
+                    maxWidth: '100%',
                     height: 'fit-content',
                     margin: '0.5rem 0',
                     flexDirection: 'row',
@@ -102,7 +104,7 @@ const ChatBot = () => {
                         background: '#dfdc',
                         borderRadius: '0.5rem 0.5rem 0.5rem 0'
                     }}>
-                        Want to know more about Programing <br />
+                        Want to know more about Programing
                         <br />
                         Ask Me what you Want
                     </p>
@@ -110,7 +112,22 @@ const ChatBot = () => {
 
                 {(chats && chats?.length !== 0) && chats?.map(msg => (
                     <MessageContainer data={msg}>
-                        <Message data={msg}>{msg.qp || msg.ans}</Message>
+                        <div style={{
+                            display: 'flex',
+                            flexDirection: 'row',
+                            justifyContent: 'flex-end',
+                        }}
+                        >
+                            {
+                                msg.ans && <img src={chatbot} alt="" style={{
+                                    width: '3rem',
+                                    height: '3rem',
+                                    padding: '.5rem',
+
+                                }} />
+                            }
+                            <Message data={msg}>{msg.qp || msg.ans}</Message>
+                        </div>
                     </MessageContainer>
                 ))}
             </ChatBox>

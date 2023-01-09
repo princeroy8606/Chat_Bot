@@ -23,9 +23,7 @@ const App = () => {
           <div>
           <h1>
             Hey , theree...
-            <br />
             Having doubts about programin.?
-            <br />
             No worrys Iam here to help you..
           </h1>
           </div>
